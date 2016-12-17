@@ -1,2 +1,2 @@
 # NeuralNetOCR
-A Neural Network for Optical Character Recognization 
+A Neural Network for Optical Character Recognition 
