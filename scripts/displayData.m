@@ -9,6 +9,9 @@ if ~exist('example_width', 'var') || isempty(example_width)
 	example_width = round(sqrt(size(X, 2)));
 end
 
+% Full screen figure image
+figure('Units','normalized','Position',[0 0 1 1])
+
 % Gray Image
 colormap(gray);
 
