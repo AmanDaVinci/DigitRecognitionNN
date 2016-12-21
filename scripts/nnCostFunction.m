@@ -66,25 +66,20 @@ Theta2_grad = zeros(size(Theta2));
 %Y = recodeY(y,m,num_labels);
 eye_mat = eye(num_labels);
 Y = eye_mat(y, :);
-size(Y)
 
 % Adding bias to input layer
 X = [ones(m,1) X];
-size(X)
 
 % Computing hidden layer
 z2 = X * Theta1';
 a2 = sigmoid(z2);
-size(a2)
 
 % Adding bias to hidden layer
 a2 = [ones(m,1) a2];
-size(a2)
 
 % Computing the output layer
 z3 = a2 * Theta2';
 a3 = sigmoid(z3);
-size(a3)
 
 % Storing our hypothesis
 H = a3;
@@ -92,6 +87,13 @@ H = a3;
 % Sum up the cost or error in our hypothesis
 % Double sum for each K number of output units
 J = sum(sum(-Y .* log(H) - (1 - Y) .* log(1 - H))) / m;
+
+% Adding regularization parameters to cost function
+Theta1_reg = Theta1(:, 2:end) .^ 2;
+Theta2_reg = Theta2(:, 2:end) .^ 2;
+regParams = (lambda * (sum(sum(Theta1_reg)) + sum(sum(Theta2_reg))) )...
+			/ (2 * m);
+J = J + regParams;
 
 % -------------------------------------------------------------
 
